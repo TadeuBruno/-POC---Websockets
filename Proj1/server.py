@@ -2,7 +2,7 @@ import socket
 
 # host = socket.gethostname(socket.gethostname())
 PORT = 3031
-HOST = '10.1.76.29'
+HOST = '10.1.76.30'
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind((HOST, PORT))

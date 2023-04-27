@@ -1,8 +1,8 @@
 import threading
 import socket
 
-PORT = 8090
-HOST = '10.1.76.29'
+PORT = 8091
+HOST = '10.1.76.30'
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind((HOST, PORT))
@@ -43,7 +43,7 @@ def receive():
         broadcast(f"{nickname} joined the chat".encode("ascii"))
         client.send("Connected to the server".encode('ascii'))
 
-        thread = threading.Thread(target = handle, arg=(client,))
+        thread = threading.Thread(target=handle, args=(client,))
         thread.start()
 print('Server is listening...')
 receive()
