@@ -1,8 +1,39 @@
+from random import randint
 import threading
 import socket
+import pymongo
 
-PORT = 8091
+
+cluster = pymongo.MongoClient("mongodb+srv://bruno:1234@cluster0.j7eftti.mongodb.net/?retryWrites=true&w=majority")
+banco = cluster['Ports']
+col = banco['available_ports']
+
+def get_port():
+    while True:
+        port = randint(1000, 65000)
+        try:
+            print(col.find_one({"port": port}, {'port': 1})['port'])
+            continue
+        except:
+            port = col.insert_one({"port": port, "connections": 1})
+            id = port.inserted_id
+            result = col.find_one({"_id": id})
+            return result['port']
+
+PORT = get_port()
 HOST = '10.1.76.30'
+
+# ideia de porta aleatoria, ter no banco só as que não posso usar, e verificar no banco se existir, se não existir colocar
+
+
+
+
+
+
+# *_*_**_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_
+
+
+
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind((HOST, PORT))
