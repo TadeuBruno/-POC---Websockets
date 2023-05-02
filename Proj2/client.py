@@ -1,12 +1,10 @@
 import socket
 import threading
 import pymongo
-# nickname =input("Choose a nickname: ")
-nickname = 'Bruno'
-# porta = int(input('Escolha a sua porta: '))
+nickname =input("Choose a nickname: ")
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-client.connect(('172.28.80.1', 3003))
+client.connect(('10.1.76.33', 3003))
 
 def receive():
     while True:
