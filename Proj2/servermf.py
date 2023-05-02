@@ -34,7 +34,7 @@ def handle(client):
         try:
             message = client.recv(1024)
             broadcast(message, get_subindice(client))
-            print(f'{obj_chat_rooms} 111111111111111111111111111111')
+            print(f'{obj_chat_rooms}')
         except:
             index = clients.index(client)
             clients.remove(client)
@@ -63,8 +63,6 @@ def receive():
         print(f"Nickname of the client is {nickname}!")
         broadcast(f"{nickname} joined the chat".encode("ascii"), get_subindice(client))
         client.send("Connected to the server".encode('ascii'))
-        print(len(clients))
-        print(f'{obj_chat_rooms} 222222222222222222222222222222')
         thread = threading.Thread(target=handle, args=(client,))
         thread.start()
 
